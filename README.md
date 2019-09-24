@@ -1,1 +1,1 @@
-# reactSnippets
+# react projects
