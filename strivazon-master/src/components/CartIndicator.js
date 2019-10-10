@@ -27,30 +27,30 @@ class CartIndicator extends Component {
     return (
       <>
         <div className="cart mt-2">
-          {/* {this.props.user && this.props.user.username ? ( */}
-          <>
-            <div style={{ marginLeft: "auto" }}>
-              <Router>
-                <Button
-                  color="primary"
-                  onClick={() => this.props.history.push("/cart")}
-                >
-                  <FontAwesomeIcon icon={faShoppingCart} id="cartIcon" />
-                  <span className="ml-2">
-                    {this.props.cart.products.length}
-                  </span>
-                </Button>
-              </Router>
-            </div>
-          </>
-          {/* ) : (
-            <Button
-              color="primary"
-              onClick={() => this.setState({ showModal: true })}
-            >
-              Login
+          {this.props.user && this.props.user.username ? (
+            <>
+              <div style={{ marginLeft: "auto" }}>
+                <Router>
+                  <Button
+                    color="primary"
+                    onClick={() => this.props.history.push("/cart")}
+                  >
+                    <FontAwesomeIcon icon={faShoppingCart} id="cartIcon" />
+                    <span className="ml-2">
+                      {this.props.cart.products.length}
+                    </span>
+                  </Button>
+                </Router>
+              </div>
+            </>
+          ) : (
+              <Button
+                color="primary"
+                onClick={() => this.setState({ showModal: true })}
+              >
+                Login
             </Button>
-          )} */}
+            )}
         </div>
         <Modal
           size="lg"

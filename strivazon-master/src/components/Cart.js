@@ -8,6 +8,15 @@ import { connect } from "react-redux";
 
 const mapStateToProps = state => state;
 
+const mapDispatchToProps = dispatch => ({
+  removeFromCart: id =>
+    dispatch({
+      type: "REMOVE_ITEM_FROM_CART",
+      payload: id
+    }),
+
+})
+
 class Cart extends Component {
   // constructor(props) {
   //   super(props);
@@ -26,7 +35,7 @@ class Cart extends Component {
         <ul className="col-sm-12" style={{ listStyle: "none" }}>
           {cart.map((book, i) => (
             <li key={i} className="my-4">
-              <Button variant="danger" onClick={() => { }}>
+              <Button variant="danger" onClick={() => { this.props.removeFromCart(book.id) }}>
                 <FontAwesomeIcon icon={faTrash} id="trashIcon" />
               </Button>
               <img
@@ -52,4 +61,4 @@ class Cart extends Component {
   }
 }
 
-export default connect(mapStateToProps)(Cart);
+export default connect(mapStateToProps, mapDispatchToProps)(Cart);

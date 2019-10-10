@@ -13,7 +13,15 @@ const mapDispatchToProps = dispatch => ({
     dispatch({
       type: "ADD_ITEM_TO_CART",
       payload: id
-    })
+    }),
+
+  removeFromCart: id =>
+    dispatch({
+      type: "REMOVE_ITEM_FROM_CART",
+      payload: id
+    }),
+
+
 });
 
 class BookDetail extends Component {

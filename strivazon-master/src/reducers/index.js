@@ -11,7 +11,7 @@ export default function (state = {}, action) {
       };
 
     case "REMOVE_ITEM_FROM_CART":
-      const bookToRemove = state.cart.products.products.findIndex(
+      const bookToRemove = state.cart.products.findIndex(
         bookId => bookId === action.payload
       )
       return {
