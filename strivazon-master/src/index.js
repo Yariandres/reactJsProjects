@@ -9,7 +9,7 @@ import "./style/index.css";
 
 import { BrowserRouter as Router } from "react-router-dom";
 
-import { Provider } from "react-redux"
+import { Provider } from "react-redux";
 import configureStore from "./store";
 
 ReactDOM.render(

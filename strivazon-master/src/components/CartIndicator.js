@@ -10,6 +10,14 @@ import { connect } from "react-redux";
 
 const mapStateToProps = state => state;
 
+const mapDispatchToProps = dispatch => ({
+  setUserName: username =>
+    dispatch({
+      type: "SET_USER_NAME",
+      payload: username
+    })
+});
+
 class CartIndicator extends Component {
   constructor(props) {
     super(props);
@@ -20,7 +28,7 @@ class CartIndicator extends Component {
   }
 
   toggleModal = () => {
-    this.setState({ showModal: !this.state.showModal });
+    this.setState({ showModal: !this.state.showModal, username: null });
   };
 
   render() {
@@ -29,6 +37,7 @@ class CartIndicator extends Component {
         <div className="cart mt-2">
           {this.props.user && this.props.user.username ? (
             <>
+              <div>Welcome, {this.props.user.username}!</div>
               <div style={{ marginLeft: "auto" }}>
                 <Router>
                   <Button
@@ -44,13 +53,13 @@ class CartIndicator extends Component {
               </div>
             </>
           ) : (
-              <Button
-                color="primary"
-                onClick={() => this.setState({ showModal: true })}
-              >
-                Login
+            <Button
+              color="primary"
+              onClick={() => this.setState({ showModal: true })}
+            >
+              Login
             </Button>
-            )}
+          )}
         </div>
         <Modal
           size="lg"
@@ -76,6 +85,7 @@ class CartIndicator extends Component {
             <Button onClick={() => this.toggleModal()}>Close</Button>
             <Button
               onClick={() => {
+                this.props.setUserName(this.state.username);
                 this.toggleModal();
               }}
             >
@@ -88,4 +98,9 @@ class CartIndicator extends Component {
   }
 }
 
-export default withRouter(connect(mapStateToProps)(CartIndicator));
+export default withRouter(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )(CartIndicator)
+);

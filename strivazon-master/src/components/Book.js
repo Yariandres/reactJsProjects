@@ -4,7 +4,6 @@ export default ({ id, title, imageUrl, price, changeBook, bookSelected }) => (
   <li
     onClick={() => changeBook(id)}
     className={bookSelected === id ? "border-thick card mt-3" : "card mt-3"}
-    key={title}
     style={{ cursor: "pointer" }}
   >
     <div className="media card-body">

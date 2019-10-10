@@ -2,11 +2,9 @@ import React, { Component } from "react";
 import Button from "react-bootstrap/Button";
 
 import { connect } from "react-redux";
+import { handleAddToCart } from "../actions";
 
-const mapStateToProps = state => {
-  console.log("STATE", state);
-  return state;
-}
+const mapStateToProps = state => state;
 
 const mapDispatchToProps = dispatch => ({
   addToCart: id =>
@@ -14,14 +12,7 @@ const mapDispatchToProps = dispatch => ({
       type: "ADD_ITEM_TO_CART",
       payload: id
     }),
-
-  removeFromCart: id =>
-    dispatch({
-      type: "REMOVE_ITEM_FROM_CART",
-      payload: id
-    }),
-
-
+  addToCartThunk: id => dispatch(handleAddToCart(id)) //I have put the actions in a separate file! ;)
 });
 
 class BookDetail extends Component {
@@ -33,7 +24,7 @@ class BookDetail extends Component {
   }
 
   componentDidMount() {
-    console.log("PROPS", this.props)
+    console.log("PROPS", this.props);
   }
 
   componentDidUpdate(prevProps) {
@@ -71,21 +62,22 @@ class BookDetail extends Component {
             </p>
             <Button
               color="primary"
-              onClick={() => this.props.addToCart(this.state.book.id)}>
+              onClick={() => this.props.addToCartThunk(this.state.book.id)}
+            >
               BUY
             </Button>
           </div>
         </div>
       </div>
     ) : (
-        <div className="col-sm-8">
-          <div className="row margin-top">
-            <div className="col-sm-12">
-              <h3>Please select a book!</h3>
-            </div>
+      <div className="col-sm-8">
+        <div className="row margin-top">
+          <div className="col-sm-12">
+            <h3>Please select a book!</h3>
           </div>
         </div>
-      );
+      </div>
+    );
   }
 }
 
